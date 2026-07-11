@@ -99,7 +99,7 @@
       padding: 60px 80px;
     }
 
-    .hero-content { flex: 1; z-index: 3; position: relative; }
+    .hero-content { flex: 1; z-index: 4; position: relative; }
 
     .hero-title {
       font-family: 'Nunito', sans-serif;
@@ -164,6 +164,14 @@
       z-index: 1;
     }
 
+    .hero-ray {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-ray svg { display: block; }
+
         .hero-circle-orange {
       position: absolute;
       width: 1400px;
@@ -173,7 +181,7 @@
       transform: translate(50%, 50%);
       border-radius: 50%;
       background: var(--orange);
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-toy-box {
@@ -182,7 +190,7 @@
       top: 50%;
       transform: translateY(-50%);
       width: 300px;
-      z-index: 3;
+      z-index: 4;
     }
 
     .toy-box-svg { width: 100%; }
@@ -922,10 +930,10 @@
 
 <nav>
   <a href="#home" class="nav-logo">
-  <img src="Images/OfficalLogo.jpg" alt="Project Ray logo" style="height: 50px; width: auto;" />
+  <img src="Images/officalLogo.jpg" alt="Project Ray logo" style="height: 50px; width: auto;" />
 </a>
   <ul class="nav-links">
-    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#home">Home</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#get-involved">Get Involved</a></li>
@@ -950,6 +958,23 @@
   </div>
 
     <div class="hero-circle-light"></div>
+
+    <div class="hero-ray" style="top: 160px; right: 460px; transform: rotate(223deg);">
+      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="hero-ray" style="top: 25px; right: 270px; transform: rotate(242deg);">
+      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="hero-ray" style="top: 360px; right: 607px; transform: rotate(207deg);">
+      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="hero-ray" style="top: 590px; right: 680px; transform: rotate(190deg);">
+      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="hero-ray" style="top: -47px; right: 40px; transform: rotate(260deg);">
+      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
   <div class="hero-circle-orange"></div>
 
     <div class="hero-toy-box">
@@ -1036,7 +1061,7 @@
   <h2 class="trusted-title">Trusted by leading<br>pediatric hospitals</h2>
   <p class="trusted-subtitle">We work hand-in-hand with child life teams<br>to deliver joy where it's needed most.</p>
   <div class="partner-pills">
-    <div class="partner-pill">Mass General Hospital</div>
+    <div class="partner-pill">Dana-Farber Cancer Institute</div>
     <div class="partner-pill">3D Printers</div>
     <div class="partner-pill">Makerspaces</div>
     <div class="partner-pill">Volunteers</div>
@@ -1144,7 +1169,7 @@
           Join our team of CAD designers and 3D printers. All skill levels welcome –
           we will train you.
         </p>
-        <a href="mailto:ProjectRay.Boston@gmail.com" class="card-cta">Apply to volunteer &nbsp;→</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLZceroq829qV1x8TSW8aN79DuQGhbeRjXOmbFtB58CbhBLw/viewform" target="_blank" rel="noopener" class="card-cta">Apply to volunteer &nbsp;→</a>
       </div>
     </div>
 
@@ -1156,7 +1181,7 @@
           Do you run a makerspace, fab lab, or have 3D printing access? Partner with us
           to bring production in-house.
         </p>
-        <a href="mailto:ProjectRay.Boston@gmail.com" class="card-cta">Become a partner &nbsp;→</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLZceroq829qV1x8TSW8aN79DuQGhbeRjXOmbFtB58CbhBLw/viewform" target="_blank" rel="noopener" class="card-cta">Become a partner &nbsp;→</a>
       </div>
     </div>
 
@@ -1179,7 +1204,7 @@
   <div class="team-grid">
 
     <div class="team-member">
-      <img src="Images/Justin.png" alt="Justin Vinh" class="team-photo" />
+      <img src="Images/justin.png" alt="Justin Vinh" class="team-photo" />
       <p class="member-name">Justin Vinh</p>
       <p class="member-role">Executive Director</p>
       <a href="https://www.linkedin.com/in/justin-n-vinh/" target="_blank" rel="noopener" class="linkedin-badge">in</a>
@@ -1187,7 +1212,7 @@
     </div>
 
     <div class="team-member">
-      <img src="Images/Darius.png" alt="Darius Walker" class="team-photo" />
+      <img src="Images/darius.png" alt="Darius Walker" class="team-photo" />
       <p class="member-name">Darius Walker</p>
       <p class="member-role">Director of Logistics</p>
       <a href="https://www.linkedin.com/in/dariuswlkr/" target="_blank" rel="noopener" class="linkedin-badge">in</a>
@@ -1237,12 +1262,12 @@
       <p class="contact-form-header">Curious about Project Ray?<br>Let's Talk</p>
 
             <form id="contact-form">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE" />
+        <input type="hidden" name="access_key" value="461c04b7-4ec3-4776-8a8f-d3a5a82d5727" />
         <input type="hidden" name="subject" value="New message from the Project Ray website" />
 
         <div class="form-row">
           <div class="form-group">
-            <label>First name *</label>
+            <label>Name *</label>
             <input type="text" name="name" required />
           </div>
           <div class="form-group">
@@ -1269,7 +1294,7 @@
   <div class="footer-grid">
     <div>
       <a href="#home" class="footer-logo">
-        <img src="Images/OfficalLogo.jpg" alt="Project Ray logo" style="height: 40px; width: auto; border-radius: 6px;" />
+        <img src="Images/officalLogo.jpg" alt="Project Ray logo" style="height: 40px; width: auto; border-radius: 6px;" />
       </a>
       <p class="footer-tagline">A Boston-based nonprofit bringing children's imaginations to life through design and 3D printing.</p>
     </div>
@@ -1305,6 +1330,28 @@
 </footer>
 
 <script>
+  const navSectionIds = ['home', 'about', 'how-it-works', 'get-involved', 'meet-the-team'];
+  const navLinksByHref = {};
+  navSectionIds.forEach(function (id) {
+    const link = document.querySelector('.nav-links a[href="#' + id + '"]');
+    if (link) navLinksByHref[id] = link;
+  });
+
+  const navObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      const activeLink = navLinksByHref[entry.target.id];
+      if (!activeLink) return;
+      Object.values(navLinksByHref).forEach(function (l) { l.classList.remove('active'); });
+      activeLink.classList.add('active');
+    });
+  }, { rootMargin: '-60px 0px -70% 0px', threshold: 0 });
+
+  navSectionIds.forEach(function (id) {
+    const section = document.getElementById(id);
+    if (section) navObserver.observe(section);
+  });
+
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     const statusEl = document.getElementById('contact-form-status');
