@@ -89,6 +89,27 @@
       text-decoration: none;
     }
 
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--navy);
+      border-radius: 2px;
+    }
+
         #home {
       display: flex;
       align-items: center;
@@ -924,6 +945,126 @@
       width: 340px;
       max-width: 100%;
     }
+
+        @media (max-width: 900px) {
+            nav { flex-wrap: wrap; padding: 0 20px; }
+      .nav-toggle { display: flex; order: 3; margin-left: 16px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        order: 4;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 8px 20px 16px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+      .btn-donate { order: 2; margin-left: auto; }
+
+            #home { flex-direction: column; min-height: auto; padding: 60px 24px; text-align: center; }
+      .hero-content { text-align: center; }
+      .hero-title { font-size: 64px; }
+      .hero-subtitle { font-size: 28px; }
+      .hero-body { font-size: 17px; max-width: 100%; }
+      .hero-buttons { justify-content: center; flex-wrap: wrap; }
+      .hero-circle-light { width: 900px; height: 900px; }
+      .hero-circle-orange { width: 700px; height: 700px; }
+      .hero-ray { display: none; }
+      .hero-toy-box {
+        position: static;
+        transform: none;
+        width: 220px;
+        margin: 32px auto 0;
+      }
+      .hero-toy-box img { width: 100% !important; margin-top: 0 !important; }
+
+            #how-it-works-summary { flex-direction: column; min-height: auto; }
+      .how-medium-circle { width: 900px; height: 900px; }
+      #how-it-works-summary::after { width: 700px; height: 700px; }
+      .how-left { padding: 40px 24px; background: var(--blue-mid); }
+      .how-right { padding: 40px 24px; background: var(--navy); }
+      .how-step-title { font-size: 30px; margin-left: 0; }
+      .how-step-desc { font-size: 17px; margin-left: 0; }
+      .how-right-title {
+        font-size: 30px;
+        margin-left: 0;
+        transform: none;
+        white-space: normal;
+      }
+      .how-right-body { font-size: 17px; margin-left: 0; transform: none; }
+      .how-right-illustration { justify-content: center; margin-top: 24px; }
+      .how-right-illustration img { margin: 0 !important; width: 240px !important; }
+
+            .stats-bar { flex-wrap: wrap; gap: 32px; padding: 32px 24px; }
+      .stat-number { font-size: 52px; }
+      .stat-number span { font-size: 54px; }
+      .stat-label { font-size: 15px; }
+
+            #about { flex-direction: column; min-height: auto; }
+      .mission-circle-outer { width: 900px; height: 900px; }
+      .mission-circle-medium { width: 650px; height: 650px; }
+      .mission-circle-navy { width: 460px; height: 460px; }
+      .mission-left { padding: 40px 24px; background: var(--navy); }
+      .mission-right { padding: 40px 24px; background: var(--blue-mid); }
+      .mission-title { font-size: 30px; }
+      .mission-body, .mission-goal { font-size: 17px; }
+
+            .trusted-section { padding: 50px 24px; }
+      .trusted-title { font-size: 30px; }
+
+            #how-it-works { padding: 50px 24px; }
+      .process-title { font-size: 30px; margin-bottom: 36px; }
+      .process-step-name { font-size: 24px; }
+      .process-step-desc { font-size: 17px; text-align: center; }
+
+            #get-involved { padding: 50px 24px; }
+      .get-involved-circle-orange { width: 1300px; height: 900px; bottom: -250px; }
+      .get-involved-title { font-size: 30px; margin-left: 0; }
+      .get-involved-sub { font-size: 17px; margin-left: 0; }
+      .cards-container { flex-direction: column; align-items: center; gap: 56px; margin-top: 48px; }
+      .card-wrap { width: 100%; max-width: 320px; }
+
+            .team-grid { gap: 40px; }
+      .team-photo, .team-photo-placeholder { width: 180px; height: 180px; }
+      .team-title { font-size: 30px; }
+
+            #contact { padding: 50px 24px 140px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+      .contact-form-wrap { margin-left: 0; }
+      .contact-info { gap: 32px; }
+      .form-row { flex-direction: column; gap: 0; }
+      .form-row .form-group { flex: 1 1 auto; }
+      .form-row .form-group input { max-width: 100%; }
+      .form-group-full input, .form-group-full textarea { max-width: 100%; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+        @media (max-width: 480px) {
+      .hero-title { font-size: 44px; }
+      .hero-subtitle { font-size: 22px; }
+      .hero-circle-light { width: 600px; height: 600px; }
+      .hero-circle-orange { width: 460px; height: 460px; }
+
+      .how-medium-circle { width: 600px; height: 600px; }
+      #how-it-works-summary::after { width: 460px; height: 460px; }
+
+      .mission-circle-outer { width: 620px; height: 620px; }
+      .mission-circle-medium { width: 460px; height: 460px; }
+      .mission-circle-navy { width: 320px; height: 320px; }
+
+      .get-involved-circle-orange { width: 900px; height: 700px; bottom: -180px; }
+
+      .stat-number { font-size: 40px; }
+      .stat-number span { font-size: 42px; }
+    }
   </style>
 </head>
 <body>
@@ -932,7 +1073,10 @@
   <a href="#home" class="nav-logo">
   <img src="Images/officalLogo.jpg" alt="Project Ray logo" style="height: 50px; width: auto;" />
 </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#how-it-works">How It Works</a></li>
@@ -1351,6 +1495,18 @@
     const section = document.getElementById(id);
     if (section) navObserver.observe(section);
   });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinksEl = document.getElementById('navLinks');
+  if (navToggle && navLinksEl) {
+    navToggle.addEventListener('click', function () {
+      const isOpen = navLinksEl.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinksEl.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { navLinksEl.classList.remove('open'); });
+    });
+  }
 
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
