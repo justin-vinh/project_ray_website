@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Ray</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="Images/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="Images/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Images/favicon-180.png" />
+  <link rel="shortcut icon" href="Images/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -191,7 +196,13 @@
       pointer-events: none;
     }
 
-    .hero-ray svg { display: block; }
+    .hero-ray svg { display: block; width: 170px; height: 190px; }
+
+    .hero-ray-1 { right: 677px; bottom: -95px; transform: rotate(180deg); }
+    .hero-ray-2 { right: 619px; bottom: 197px; transform: rotate(202.5deg); }
+    .hero-ray-3 { right: 454px; bottom: 444px; transform: rotate(225deg); }
+    .hero-ray-4 { right: 207px; bottom: 609px; transform: rotate(247.5deg); }
+    .hero-ray-5 { right: -85px; bottom: 667px; transform: rotate(270deg); }
 
         .hero-circle-orange {
       position: absolute;
@@ -638,6 +649,7 @@
       color: var(--navy);
       margin-bottom: 26px;
       line-height: 1.2;
+      min-height: 58px;
     }
 
     .card-body {
@@ -657,7 +669,7 @@
       line-height: 1.2;
       color: var(--navy);
       text-decoration: none;
-      margin-top: 106px;
+      margin-top: auto;
     }
 
     .card-cta:hover { color: var(--orange); }
@@ -946,6 +958,51 @@
       max-width: 100%;
     }
 
+        @media (max-width: 1400px) {
+      .hero-circle-light { width: 1300px; height: 1300px; }
+      .hero-circle-orange { width: 1000px; height: 1000px; }
+      .hero-title { font-size: 76px; }
+      .hero-subtitle { font-size: 32px; }
+
+      .hero-ray svg { width: 123px; height: 137px; }
+      .hero-ray-1 { right: 490px; bottom: -69px; top: auto; }
+      .hero-ray-2 { right: 448px; bottom: 143px; top: auto; }
+      .hero-ray-3 { right: 328px; bottom: 321px; top: auto; }
+      .hero-ray-4 { right: 150px; bottom: 441px; top: auto; }
+      .hero-ray-5 { right: -61px; bottom: 483px; top: auto; }
+      .hero-toy-box {
+        right: 120px;
+        width: 240px;
+        top: auto;
+        bottom: 30px;
+        transform: none;
+      }
+
+      .how-medium-circle { width: 1300px; height: 1300px; }
+      #how-it-works-summary::after { width: 1000px; height: 1000px; }
+      .how-step-title { margin-left: 16px; font-size: 34px; }
+      .how-step-desc { margin-left: 16px; }
+      .how-right-title {
+        margin-left: 90px;
+        transform: translate(40px, -8px);
+        white-space: normal;
+        font-size: 34px;
+      }
+      .how-right-body { margin-left: 90px; transform: translate(40px, -8px); }
+
+      .mission-circle-outer { width: 1800px; height: 1800px; }
+      .mission-circle-medium { width: 1300px; height: 1300px; }
+      .mission-circle-navy { width: 950px; height: 950px; }
+
+      .get-involved-circle-orange { width: 1500px; height: 750px; bottom: -260px; }
+      .get-involved-title { margin-left: 16px; }
+      .get-involved-sub { margin-left: 16px; }
+      .cards-container { gap: 24px; }
+      .card-wrap { flex: 0 1 280px; }
+
+      .contact-form-wrap { margin-left: 60px; }
+    }
+
         @media (max-width: 900px) {
             nav { flex-wrap: wrap; padding: 0 20px; }
       .nav-toggle { display: flex; order: 3; margin-left: 16px; }
@@ -976,7 +1033,12 @@
       .hero-buttons { justify-content: center; flex-wrap: wrap; }
       .hero-circle-light { width: 900px; height: 900px; }
       .hero-circle-orange { width: 700px; height: 700px; }
-      .hero-ray { display: none; }
+      .hero-ray svg { width: 85px; height: 95px; }
+      .hero-ray-1 { right: 338px; bottom: -48px; top: auto; }
+      .hero-ray-2 { right: 309px; bottom: 98px; top: auto; }
+      .hero-ray-3 { right: 227px; bottom: 222px; top: auto; }
+      .hero-ray-4 { right: 103px; bottom: 304px; top: auto; }
+      .hero-ray-5 { right: -42px; bottom: 334px; top: auto; }
       .hero-toy-box {
         position: static;
         transform: none;
@@ -1052,6 +1114,12 @@
       .hero-subtitle { font-size: 22px; }
       .hero-circle-light { width: 600px; height: 600px; }
       .hero-circle-orange { width: 460px; height: 460px; }
+      .hero-ray svg { width: 57px; height: 63px; }
+      .hero-ray-1 { right: 226px; bottom: -32px; top: auto; }
+      .hero-ray-2 { right: 206px; bottom: 66px; top: auto; }
+      .hero-ray-3 { right: 151px; bottom: 148px; top: auto; }
+      .hero-ray-4 { right: 69px; bottom: 203px; top: auto; }
+      .hero-ray-5 { right: -28px; bottom: 222px; top: auto; }
 
       .how-medium-circle { width: 600px; height: 600px; }
       #how-it-works-summary::after { width: 460px; height: 460px; }
@@ -1103,20 +1171,20 @@
 
     <div class="hero-circle-light"></div>
 
-    <div class="hero-ray" style="top: 160px; right: 460px; transform: rotate(223deg);">
-      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-ray hero-ray-1">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <div class="hero-ray" style="top: 25px; right: 270px; transform: rotate(242deg);">
-      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-ray hero-ray-2">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <div class="hero-ray" style="top: 360px; right: 607px; transform: rotate(207deg);">
-      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-ray hero-ray-3">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <div class="hero-ray" style="top: 590px; right: 680px; transform: rotate(190deg);">
-      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-ray hero-ray-4">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <div class="hero-ray" style="top: -47px; right: 40px; transform: rotate(260deg);">
-      <svg width="170" height="190" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-ray hero-ray-5">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M12 6 L28 20 L12 34" stroke="#F5EFAE" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
   <div class="hero-circle-orange"></div>
@@ -1147,9 +1215,7 @@
   <div class="how-right">
     <h3 class="how-right-title">Built On Community<br>And Innovation</h3>
     <p class="how-right-body">
-      By combining volunteer support, maker spaces,<br>
-      and 3D printing, we transform children's ideas<br>
-      into meaningful, tangible creations.
+      By combining volunteer support, maker spaces, and 3D printing, we transform children's ideas into meaningful, tangible creations.
     </p>
         <div class="how-right-illustration">
       <img src="Images/overview.png" alt="volunteers and children turning drawings into 3D printed toys" style="width: 320px; max-width: 100%; height: auto; margin-right: 40px; margin-bottom: 80px;" />
