@@ -83,6 +83,18 @@
     .nav-links a.active { text-decoration: underline; font-weight: 600; }
 
     .btn-donate {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-volunteer-portal {
       background: var(--blue-mid);
       color: #fff;
       border: none;
@@ -92,6 +104,7 @@
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
+      margin-left: 12px;
     }
 
     .nav-toggle {
@@ -690,18 +703,27 @@
     .team-grid {
       display: flex;
       justify-content: center;
-      gap: 70px;
+      gap: 30px;
       flex-wrap: wrap;
     }
 
     .team-member { text-align: center; }
 
     .team-photo {
-      width: 240px;
-      height: 240px;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 16px;
+    }
+
+    /* The circle itself is the same fixed size as every other photo -- this just
+       zooms the image content out slightly within that circle, since Krish's and
+       Sam's source photos are framed a bit closer than the others.
+       ADJUST HERE: lower the number (e.g. 0.85) to zoom out more, raise it
+       (e.g. 0.95) for less. */
+    .team-photo-zoom-out {
+      transform: scale(0.9);
     }
 
     .team-photo-placeholder {
@@ -1024,6 +1046,14 @@
       .nav-links li { width: 100%; }
       .nav-links a { display: block; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
       .btn-donate { order: 2; margin-left: auto; }
+      .nav-links a.btn-volunteer-portal {
+        display: block;
+        text-align: center;
+        border-radius: 30px;
+        padding: 10px 24px;
+        margin: 8px 0 4px;
+        border-bottom: none;
+      }
 
             #home { flex-direction: column; min-height: auto; padding: 60px 24px; text-align: center; }
       .hero-content { text-align: center; }
@@ -1150,6 +1180,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#get-involved">Get Involved</a></li>
     <li><a href="#meet-the-team">Meet the Team</a></li>
+    <li><a href="makers/" target="_blank" rel="noopener" class="btn-volunteer-portal">Volunteer Portal</a></li>
   </ul>
   <a href="https://gofund.me/fc1b11471" target="_blank" rel="noopener" class="btn-donate">Donate</a>
 </nav>
@@ -1422,6 +1453,14 @@
     </div>
 
     <div class="team-member">
+      <img src="Images/Krish.png" alt="Krish Kapur" class="team-photo team-photo-zoom-out" />
+      <p class="member-name">Krish Kapur</p>
+      <p class="member-role">Director of Finance</p>
+      <a href="https://www.linkedin.com/in/krish-kapur-194257249/" target="_blank" rel="noopener" class="linkedin-badge">in</a>
+      <p class="member-toy">Favorite Toy:<strong>Rubik's Cube</strong></p>
+    </div>
+
+    <div class="team-member">
       <img src="Images/darius.png" alt="Darius Walker" class="team-photo" />
       <p class="member-name">Darius Walker</p>
       <p class="member-role">Director of Logistics</p>
@@ -1435,6 +1474,14 @@
       <p class="member-role">Director of Engineering</p>
       <a href="https://www.linkedin.com/in/ella-gray-settle/" target="_blank" rel="noopener" class="linkedin-badge">in</a>
       <p class="member-toy">Favorite Toy:<strong>Lincoln Logs</strong></p>
+    </div>
+
+    <div class="team-member">
+      <img src="Images/Sam.png" alt="Samuel Varghese" class="team-photo team-photo-zoom-out" />
+      <p class="member-name">Samuel Varghese</p>
+      <p class="member-role">Director of Public Relations</p>
+      <a href="https://www.linkedin.com/in/samueljoshv/" target="_blank" rel="noopener" class="linkedin-badge">in</a>
+      <p class="member-toy">Favorite Toy:<strong>Sam's Trusty Yo-Yo</strong></p>
     </div>
 
   </div>
@@ -1515,6 +1562,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">Our Mission</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="makers/" target="_blank" rel="noopener">Volunteer Portal</a></li>
       </ul>
     </div>
 

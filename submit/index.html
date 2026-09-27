@@ -633,11 +633,12 @@
       return result.secure_url;
     }
 
-    async function logToGoogleSheet(toyName, description, photoUrls) {
+    async function logToGoogleSheet(toyName, description, photoUrls, ageRange) {
       try {
         const params = new URLSearchParams();
         params.append('toy_name', toyName);
         params.append('description', description);
+        params.append('age_range', ageRange);
         params.append('image1', photoUrls[0] || '');
         params.append('image2', photoUrls[1] || '');
         params.append('image3', photoUrls[2] || '');
@@ -675,7 +676,7 @@
         const photoUrls = await Promise.all(selectedPhotos.map(uploadPhotoToCloudinary));
 
         submitBtn.textContent = 'Sending...';
-        await logToGoogleSheet(submitForm.toy_name.value, submitForm.description.value, photoUrls);
+        await logToGoogleSheet(submitForm.toy_name.value, submitForm.description.value, photoUrls, submitForm.age_range.value);
 
         const hospitalValue = hospitalSelect.value === 'Other'
           ? `Other: ${hospitalOther.value}`

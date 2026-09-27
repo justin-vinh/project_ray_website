@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer Portal | Project Ray</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../Images/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../Images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../Images/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../Images/favicon-180.png" />
+  <link rel="shortcut icon" href="../Images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FFA66E;
+      --navy: #355070;
+      --blue-mid: #95C7FE;
+      --light-blue: #D7E6FF;
+      --pale-blue: #D0E3F5;
+      --text-dark: #355070;
+      --green: #4C9A6A;
+      --red: #C0675A;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text-dark);
+      background: #F7FBFF;
+    }
+
+    /* ── PASSWORD GATE ── */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .gate-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 28px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .gate-box img { height: 44px; margin-bottom: 16px; border-radius: 6px; }
+
+    .gate-box h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .gate-box p { font-size: 14px; margin-bottom: 20px; }
+
+    .gate-box input {
+      width: 100%;
+      border: 2px solid var(--light-blue);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .gate-box input:focus { border-color: var(--orange); }
+
+    .gate-box button {
+      width: 100%;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #gate-error { color: var(--red); font-size: 13px; margin-top: 10px; display: none; }
+
+    /* ── PAGE ── */
+    #app { display: none; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .back-home {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    header img { height: 36px; width: auto; border-radius: 6px; }
+
+    .header-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: var(--orange);
+      font-size: 20px;
+    }
+
+    #refresh-btn {
+      background: var(--pale-blue);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    #last-updated { font-size: 12px; color: #7f93ab; margin-top: 4px; text-align: right; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 28px 0 14px;
+    }
+
+    #loading-msg, #empty-msg { text-align: center; color: #7f93ab; padding: 40px 0; }
+
+    .toy-card {
+      background: #fff;
+      border: 2px solid var(--light-blue);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .toy-card.overdue { border-color: var(--red); }
+    .toy-card.completed { opacity: 0.7; }
+
+    .toy-card-main { flex: 1 1 260px; min-width: 0; }
+
+    .toy-card-side {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-left: 2px dashed var(--light-blue);
+      padding-left: 20px;
+    }
+
+    @media (max-width: 560px) {
+      .toy-card-side { border-left: none; border-top: 2px dashed var(--light-blue); padding-left: 0; padding-top: 16px; }
+    }
+
+    .toy-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 18px; color: var(--navy); }
+    .toy-tracking { font-size: 12px; color: #7f93ab; }
+
+    .status-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .status-pill.needs { background: #FEF3EA; color: var(--orange); }
+    .status-pill.in-progress { background: var(--pale-blue); color: var(--navy); }
+    .status-pill.overdue { background: #FBEAE8; color: var(--red); }
+    .status-pill.done { background: #E7F5EC; color: var(--green); }
+
+    .toy-desc { font-size: 14px; margin: 10px 0; line-height: 1.4; }
+
+    .toy-photos { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+    .toy-photos img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--light-blue);
+    }
+
+    .photo-downloads { display: flex; gap: 10px; flex-wrap: wrap; margin: -4px 0 10px; }
+    .photo-downloads a {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .photo-downloads a:hover { color: var(--orange); }
+
+    .toy-side-row { font-size: 13px; }
+    .toy-side-row strong { color: var(--navy); display: block; }
+
+    .toy-card-side button, .toy-card-side .cad-download {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .toy-card-side button.secondary {
+      background: none;
+      border: 2px solid var(--blue-mid);
+      color: var(--navy);
+    }
+
+    .toy-card-side .cad-download { background: var(--green); }
+
+    .toy-card-side button:disabled { opacity: 0.5; cursor: default; }
+
+    .cad-upload-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .cad-upload-label input[type="file"] {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="password-gate">
+  <div class="gate-box">
+    <img src="../Images/officalLogo.jpg" alt="Project Ray logo" />
+    <h1>Volunteer Portal</h1>
+    <p>This area is for Project Ray makers and leadership only.</p>
+    <input type="password" id="password-input" placeholder="Password" />
+    <button id="password-submit">Enter</button>
+    <p id="gate-error">Incorrect password — try again.</p>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <a href="../" class="back-home">
+      <img src="../Images/officalLogo.jpg" alt="Project Ray logo" />
+      <span class="header-title">Volunteer Portal</span>
+    </a>
+    <div>
+      <button id="refresh-btn">↻ Refresh</button>
+      <div id="last-updated"></div>
+    </div>
+  </header>
+
+  <main>
+    <p id="loading-msg">Loading toys...</p>
+
+    <div id="active-section" style="display: none;">
+      <h2 class="section-title">Active Toys</h2>
+      <div id="active-list"></div>
+      <p id="empty-msg" style="display: none;">No active toys right now — all caught up!</p>
+    </div>
+
+    <div id="completed-section" style="display: none;">
+      <h2 class="section-title">Completed</h2>
+      <div id="completed-list"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ADJUST HERE: this is a client-side deterrent, not real security -- anyone who
+  // views the page source can find this value. Good enough for keeping casual
+  // visitors out of an internal tracking tool, not for protecting real secrets.
+  const MAKERS_PASSWORD = 'toys4kids';
+
+  // Same Apps Script Web App URL used by the submit page.
+  const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyqv0Unv6R9W3pbNORYES16YwbuUtWYUhU7mKc0FF4HfJoMYUIkCB_bejUJU5K__3szmg/exec';
+
+  // Same Cloudinary account as the submit page -- CAD files (.stl etc.) upload
+  // through the "image" endpoint because Cloudinary specifically handles 3D
+  // model files under that resource type, but that needs a Cloudinary add-on
+  // not guaranteed on a free account -- using "raw" instead, which stores any
+  // file type as-is with zero processing, so it always works regardless.
+  const CLOUDINARY_CLOUD_NAME = 'ma4srr16';
+  const CLOUDINARY_UPLOAD_PRESET = 'project_ray_submissions';
+
+  const DESIGN_DAYS = 7;
+  const PRINT_DAYS = 7;
+
+  // ADJUST HERE to change the CAD upload restrictions (storage is limited on
+  // the free Cloudinary plan, so keeping this tight matters).
+  const CAD_MAX_SIZE_MB = 5;
+
+  async function uploadCadFile(file) {
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`,
+      { method: 'POST', body: data }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error?.message || 'CAD file upload failed');
+    }
+    return result.secure_url;
+  }
+
+  // ── Password gate ──
+  const gate = document.getElementById('password-gate');
+  const app = document.getElementById('app');
+  const passwordInput = document.getElementById('password-input');
+  const gateError = document.getElementById('gate-error');
+
+  function unlock() {
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    sessionStorage.setItem('makers_unlocked', 'true');
+    loadToys();
+  }
+
+  document.getElementById('password-submit').addEventListener('click', function () {
+    if (passwordInput.value === MAKERS_PASSWORD) {
+      unlock();
+    } else {
+      gateError.style.display = 'block';
+    }
+  });
+
+  passwordInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('password-submit').click();
+  });
+
+  if (sessionStorage.getItem('makers_unlocked') === 'true') {
+    unlock();
+  }
+
+  // ── Data loading ──
+  function addDays(dateStr, days) {
+    const d = new Date(dateStr);
+    d.setDate(d.getDate() + days);
+    return d;
+  }
+
+  function daysLeftText(dueDate) {
+    const now = new Date();
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const diff = Math.ceil((dueDate - now) / msPerDay);
+    if (diff < 0) return { text: `Overdue by ${Math.abs(diff)} day${Math.abs(diff) === 1 ? '' : 's'}`, overdue: true };
+    if (diff === 0) return { text: 'Due today', overdue: false };
+    return { text: `${diff} day${diff === 1 ? '' : 's'} left`, overdue: false };
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  async function claimOrComplete(action, row, extra) {
+    const params = new URLSearchParams({ action, row, ...extra });
+    try {
+      await fetch(SHEET_API_URL, { method: 'POST', mode: 'no-cors', body: params });
+    } catch (err) {
+      console.error('Action failed:', err);
+    }
+    // Apps Script POST responses can't be read from the browser (no-cors), so we
+    // just wait a moment for the sheet to update, then re-fetch to reflect it.
+    setTimeout(loadToys, 1200);
+  }
+
+  function buildCard(toy) {
+    const card = document.createElement('div');
+    card.className = 'toy-card';
+    const isCompleted = !!toy.printedDate;
+    let overdue = false;
+
+    // Status pill: reflects whichever stage is currently active.
+    let statusHtml;
+    if (isCompleted) {
+      statusHtml = '<span class="status-pill done">✓ Completed</span>';
+      card.classList.add('completed');
+    } else if (toy.modeler && !toy.completedModelDate) {
+      const info = daysLeftText(addDays(toy.assignedDate, DESIGN_DAYS));
+      overdue = info.overdue;
+      statusHtml = `<span class="status-pill ${info.overdue ? 'overdue' : 'in-progress'}">Design: ${info.text}</span>`;
+    } else if (toy.printer && toy.completedModelDate && !toy.printedDate) {
+      const info = daysLeftText(addDays(toy.completedModelDate, PRINT_DAYS));
+      overdue = info.overdue;
+      statusHtml = `<span class="status-pill ${info.overdue ? 'overdue' : 'in-progress'}">Printing: ${info.text}</span>`;
+    } else {
+      statusHtml = '<span class="status-pill needs">Awaiting makers</span>';
+    }
+    if (overdue) card.classList.add('overdue');
+
+    const photoUrls = [toy.image1, toy.image2, toy.image3].filter(Boolean);
+    const photos = photoUrls.map(url => `<img src="${url}" alt="Toy photo" />`).join('');
+    const photoDownloads = photoUrls.map((url, i) =>
+      `<a class="photo-download" href="${url}" download target="_blank" rel="noopener">⬇ Photo ${i + 1}</a>`
+    ).join('');
+
+    // Sidebar: both claim buttons are shown independently whenever that role
+    // is open, regardless of the other role's progress -- so a printer can
+    // reserve the job before modeling is even done.
+    let sideHtml = `${statusHtml}`;
+
+    if (!toy.modeler) {
+      sideHtml += `<button data-action="claim_modeler" data-row="${toy.row}">Claim as Modeler</button>`;
+    } else {
+      sideHtml += `<div class="toy-side-row"><strong>Modeler</strong>${toy.modeler}</div>`;
+      if (!toy.completedModelDate) {
+        sideHtml += `<button data-action="mark_model_complete" data-row="${toy.row}">Mark Modeling Complete</button>`;
+      }
+    }
+
+    if (!isCompleted) {
+      if (!toy.printer) {
+        sideHtml += `<button data-action="claim_printer" data-row="${toy.row}" class="secondary">Claim as Printer</button>`;
+      } else {
+        sideHtml += `<div class="toy-side-row"><strong>Printer</strong>${toy.printer}</div>`;
+        if (toy.completedModelDate && !toy.printedDate) {
+          sideHtml += `<button data-action="mark_print_complete" data-row="${toy.row}">Mark Printing Complete</button>`;
+        }
+      }
+    } else if (toy.printer) {
+      sideHtml += `<div class="toy-side-row"><strong>Printer</strong>${toy.printer}</div>`;
+    }
+
+    // CAD file: upload control once there's a modeler, download link once a
+    // file exists -- both disappear once the toy is fully completed.
+    if (!isCompleted) {
+      if (toy.fileName) {
+        sideHtml += `<a class="cad-download" href="${toy.fileName}" download target="_blank" rel="noopener">⬇ Download CAD File</a>`;
+      }
+      if (toy.modeler) {
+        sideHtml += `
+          <label class="cad-upload-label">${toy.fileName ? 'Replace' : 'Upload'} CAD file <span style="font-weight:400;">(.zip, max ${CAD_MAX_SIZE_MB}MB)</span>
+            <input type="file" class="cad-upload-input" data-row="${toy.row}" accept=".zip" />
+          </label>`;
+      }
+    } else if (toy.fileName) {
+      sideHtml += `<div class="toy-side-row" style="color:#7f93ab;">CAD file locked (toy completed)</div>`;
+    }
+
+    card.innerHTML = `
+      <div class="toy-card-main">
+        <div class="toy-title">${toy.toyName || 'Untitled Toy'}${toy.ageRange ? ` <span style="font-weight:400;">(${toy.ageRange})</span>` : ''}</div>
+        <div class="toy-tracking">${toy.trackingNumber || ''} &middot; submitted ${formatDate(toy.submissionDate)}</div>
+        ${toy.description ? `<p class="toy-desc">${toy.description}</p>` : ''}
+        ${photos ? `<div class="toy-photos">${photos}</div>` : ''}
+        ${photoDownloads ? `<div class="photo-downloads">${photoDownloads}</div>` : ''}
+      </div>
+      <div class="toy-card-side">${sideHtml}</div>
+    `;
+
+    card.querySelectorAll('.toy-card-side button[data-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const action = btn.dataset.action;
+        const row = btn.dataset.row;
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        if (action === 'claim_modeler' || action === 'claim_printer') {
+          const name = prompt('Your name:');
+          if (!name) { btn.disabled = false; btn.textContent = originalText; return; }
+          claimOrComplete(action, row, { name });
+        } else {
+          claimOrComplete(action, row, {});
+        }
+      });
+    });
+
+    const uploadInput = card.querySelector('.cad-upload-input');
+    if (uploadInput) {
+      uploadInput.addEventListener('change', async function () {
+        const file = uploadInput.files[0];
+        if (!file) return;
+
+        if (!file.name.toLowerCase().endsWith('.zip')) {
+          alert('Please upload a .zip file.');
+          uploadInput.value = '';
+          return;
+        }
+        if (file.size > CAD_MAX_SIZE_MB * 1024 * 1024) {
+          alert(`That file is too large -- please keep it under ${CAD_MAX_SIZE_MB}MB.`);
+          uploadInput.value = '';
+          return;
+        }
+
+        const label = uploadInput.closest('.cad-upload-label');
+        const originalLabel = label.firstChild.textContent;
+        label.firstChild.textContent = 'Uploading...';
+        uploadInput.disabled = true;
+
+        try {
+          const fileUrl = await uploadCadFile(file);
+          await claimOrComplete('upload_cad', toy.row, { file_url: fileUrl });
+        } catch (err) {
+          alert('CAD upload failed: ' + err.message);
+          label.firstChild.textContent = originalLabel;
+          uploadInput.disabled = false;
+        }
+      });
+    }
+
+    return card;
+  }
+
+  async function loadToys() {
+    try {
+      const response = await fetch(SHEET_API_URL);
+      const result = await response.json();
+      const toys = result.rows || [];
+
+      document.getElementById('loading-msg').style.display = 'none';
+      document.getElementById('active-section').style.display = 'block';
+
+      const activeList = document.getElementById('active-list');
+      const completedList = document.getElementById('completed-list');
+      const completedSection = document.getElementById('completed-section');
+      activeList.innerHTML = '';
+      completedList.innerHTML = '';
+
+      const active = toys.filter(t => !t.printedDate);
+      const completed = toys.filter(t => t.printedDate);
+
+      document.getElementById('empty-msg').style.display = active.length === 0 ? 'block' : 'none';
+
+      active.forEach(toy => activeList.appendChild(buildCard(toy)));
+
+      if (completed.length > 0) {
+        completedSection.style.display = 'block';
+        completed.forEach(toy => completedList.appendChild(buildCard(toy)));
+      }
+
+      document.getElementById('last-updated').textContent =
+        'Updated ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    } catch (err) {
+      document.getElementById('loading-msg').textContent = 'Could not load toys — please refresh.';
+      console.error('Failed to load toys:', err);
+    }
+  }
+
+  document.getElementById('refresh-btn').addEventListener('click', loadToys);
+
+  // Auto-refresh every 30 seconds so new submissions and other makers' changes show up.
+  setInterval(function () {
+    if (sessionStorage.getItem('makers_unlocked') === 'true') loadToys();
+  }, 30000);
+</script>
+
+</body>
+</html>
